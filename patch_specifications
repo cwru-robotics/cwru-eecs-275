@@ -1,0 +1,3 @@
+patch -fs `rospack find stdr_resources`/resources/specifications/stdr_specifications.xml < `rospack find braitenberg_vehicles`/patches/stdr_specifications.patch
+
+
