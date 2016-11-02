@@ -6,4 +6,3 @@ source /home/ubuntu/ros_ws/devel/setup.bash
 export ROS_IP=$ip
 export ROS_MASTER_URI=http://$ip:11311
 roslaunch deeplearning_bringup deeplearning.launch
-
