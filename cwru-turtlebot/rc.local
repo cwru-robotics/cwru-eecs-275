@@ -12,6 +12,6 @@
 
 sleep 30
 
-sudo -i -u ubuntu /home/ubuntu/jetsonbot/devel/turtleStart.sh
+sudo -i -u ubuntu /home/ubuntu/ros_ws/devel/turtleStart.sh
 
 exit 0
