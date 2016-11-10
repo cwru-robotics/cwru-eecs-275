@@ -114,7 +114,7 @@ catkin_package(
 ## Your package locations should be listed before other locations
 # include_directories(include)
 include_directories(
-  ${catkin_INCLUDE_DIRS}
+  ${catkin_INCLUDE_DIRS} include
 )
 
 ## Declare a C++ library
@@ -128,7 +128,7 @@ include_directories(
 # add_dependencies(minimal_turtlebot ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-add_executable(minimal_turtlebot src/minimal_turtlebot.cpp)
+add_executable(minimal_turtlebot src/minimal_turtlebot.cpp src/turtlebot_controller.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
