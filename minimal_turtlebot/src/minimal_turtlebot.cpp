@@ -5,57 +5,32 @@
 #include<kobuki_msgs/BumperEvent.h>
 #include<kobuki_msgs/Sound.h>
 #include <geometry_msgs/Twist.h>
+#include "minimal_turtlebot/turtlebot_controller.h"
 
 //instantiate some special types for our commands  
 kobuki_msgs::Sound soundValue; 
 geometry_msgs::Twist base_cmd;
 
+uint8_t localSoundValue=0; 
+float localLinearSpeed=0.0; 
+float localAngularSpeed=0.0; 
+
 uint8_t soundValueUpdateCounter = 0; 
   
-uint8_t leftWheelDropped=0; 
-uint8_t rightWheelDropped=0; 
-
-uint8_t leftBumperPressed=0; 
-uint8_t centerBumperPressed=0; 
-uint8_t rightBumperPressed=0; 
-
-void studentCode(void) 
-{ 
-	//Place your code here! you can access the left / right wheel 
-	//dropped variables declared above, as well as information about
-	//bumper status. 
-	
-	//outputs have been set to some default values. Feel free 
-	//to change these constants to see how they impact the robot. 
-	
-	base_cmd.linear.x = 0.25; //FYI 1.0 is very fast so you have a frame
-	//of reference. 
-	
-	base_cmd.angular.z = 0.0; 
-	soundValue.value=soundValue.ERROR; 
-	
-	//here are the various sound value enumeration options
-	//soundValue.OFF
-	//soundValue.RECHARGE
-	//soundValue.BUTTON
-	//soundValue.ERROR
-	//soundValue.CLEANINGSTART
-	//soundValue.CLEANINGEND
-} 
-
+turtlebotInputs localTurtleBotInputs; 
 
 void wheelDropCallBack(const kobuki_msgs::WheelDropEvent& wheel_data_holder) 
 { 
 	
 	if (wheel_data_holder.wheel == wheel_data_holder.LEFT)
 	{
-		leftWheelDropped = wheel_data_holder.state; 
+		localTurtleBotInputs.leftWheelDropped = wheel_data_holder.state; 
 		ROS_INFO("left wheel dropped state is: %u",wheel_data_holder.state); 
 	}
 	
 	if (wheel_data_holder.wheel == wheel_data_holder.RIGHT)
 	{
-		rightWheelDropped = wheel_data_holder.state; 
+		localTurtleBotInputs.rightWheelDropped = wheel_data_holder.state; 
 		ROS_INFO("right wheel dropped state is: %u",wheel_data_holder.state); 
 	}
 
@@ -65,23 +40,21 @@ void bumperMessageCallback(const kobuki_msgs::BumperEvent& bumper_data_holder)
 { 
 	if (bumper_data_holder.bumper == bumper_data_holder.LEFT)
 	{
-		leftBumperPressed = bumper_data_holder.state; 
+		localTurtleBotInputs.leftBumperPressed = bumper_data_holder.state; 
 		ROS_INFO("left bumper pressed state is: %u",bumper_data_holder.state); 
 	}
 	
 	if (bumper_data_holder.bumper == bumper_data_holder.CENTER)
 	{
-		centerBumperPressed = bumper_data_holder.state; 
+		localTurtleBotInputs.centerBumperPressed = bumper_data_holder.state; 
 		ROS_INFO("center bumper pressed state is: %u",bumper_data_holder.state); 
 	}
 	
 	if (bumper_data_holder.bumper == bumper_data_holder.RIGHT)
 	{
-		rightBumperPressed = bumper_data_holder.state; 
+		localTurtleBotInputs.rightBumperPressed = bumper_data_holder.state; 
 		ROS_INFO("right bumper pressed state is: %u",bumper_data_holder.state); 
 	}
-
-	
 
 } 
 
@@ -105,11 +78,16 @@ int main(int argc, char **argv)
   ros::Publisher my_publisher_object = n.advertise<kobuki_msgs::Sound>("mobile_base/commands/sound", 1);
   ros::Publisher cmd_vel_pub_ = n.advertise<geometry_msgs::Twist>("/cmd_vel", 1);
   
+
+  
   while(ros::ok())
   {
 	ros::spinOnce();
-
-	studentCode(); 
+	turtlebot_controller(localTurtleBotInputs, &localSoundValue, &localLinearSpeed, &localAngularSpeed);
+	
+	soundValue.value=localSoundValue;
+	base_cmd.linear.x=localLinearSpeed;
+	base_cmd.angular.z=localAngularSpeed;
 	
 	if (soundValueUpdateCounter > 10)
 	{
