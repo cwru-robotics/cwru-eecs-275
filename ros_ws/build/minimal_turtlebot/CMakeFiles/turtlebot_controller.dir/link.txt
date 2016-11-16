@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/turtlebot_controller.dir/src/turtlebot_controller.cpp.o  -o /home/ubuntu/ros_ws/devel/lib/minimal_turtlebot/turtlebot_controller -rdynamic 

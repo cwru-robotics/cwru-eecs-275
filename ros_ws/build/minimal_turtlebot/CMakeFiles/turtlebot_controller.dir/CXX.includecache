@@ -1,0 +1,12 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ubuntu/ros_ws/src/minimal_turtlebot/src/turtlebot_controller.cpp
+minimal_turtlebot/turtlebot_controller.h
+/home/ubuntu/ros_ws/src/minimal_turtlebot/src/minimal_turtlebot/turtlebot_controller.h
+

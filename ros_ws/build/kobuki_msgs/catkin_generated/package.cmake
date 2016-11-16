@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "kobuki_msgs")
+set(kobuki_msgs_MAINTAINER "Daniel Stonier <stonier@yujinrobot.com>")
+set(kobuki_msgs_DEPRECATED "")
+set(kobuki_msgs_VERSION "0.7.0")
+set(kobuki_msgs_BUILD_DEPENDS "std_msgs" "actionlib_msgs" "message_generation")
+set(kobuki_msgs_RUN_DEPENDS "std_msgs" "actionlib_msgs" "message_runtime")
+set(kobuki_msgs_BUILDTOOL_DEPENDS "catkin")

@@ -1,0 +1,1 @@
+/usr/bin/c++       CMakeFiles/minimal_turtle_bot.dir/src/my_minimal_turtlebot.cpp.o  -o /home/ubuntu/ros_ws/devel/lib/minimal_turtle_bot/minimal_turtle_bot -rdynamic 
