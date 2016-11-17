@@ -6,6 +6,8 @@
 #include<kobuki_msgs/Sound.h>
 #include <geometry_msgs/Twist.h>
 #include "minimal_turtlebot/turtlebot_controller.h"
+#include <sensor_msgs/CompressedImage.h>
+#include <sensor_msgs/Image.h>
 
 //instantiate some special types for our commands  
 kobuki_msgs::Sound soundValue; 
@@ -18,6 +20,43 @@ float localAngularSpeed=0.0;
 uint8_t soundValueUpdateCounter = 0; 
   
 turtlebotInputs localTurtleBotInputs; 
+
+void colorImageCallback(const sensor_msgs::Image& image_data_holder) 
+{ 
+	static uint32_t colorImageInfoCounter = 0; 
+	
+	localTurtleBotInputs.colorImage=image_data_holder; 
+	if (colorImageInfoCounter > 30)
+	{
+		ROS_INFO("color image height: %u",image_data_holder.height);
+		ROS_INFO("color image width: %u",image_data_holder.width);
+		colorImageInfoCounter=0; 
+	}
+	else
+	{
+		colorImageInfoCounter++; 
+	}
+
+} 
+
+void depthImageCallback(const sensor_msgs::Image& image_data_holder) 
+{ 
+	static uint32_t depthImageInfoCounter = 0; 
+	
+	localTurtleBotInputs.depthImage=image_data_holder; 
+	if (depthImageInfoCounter > 1)
+	{
+		ROS_INFO("depth image height: %u",image_data_holder.height);
+		ROS_INFO("depth image width: %u",image_data_holder.width);
+		//ROS_INFO("depth image encoding: %s",image_data_holder.encoding.c_str());
+		depthImageInfoCounter=0; 
+	}
+	else
+	{
+		depthImageInfoCounter++; 
+	}
+} 
+
 
 void wheelDropCallBack(const kobuki_msgs::WheelDropEvent& wheel_data_holder) 
 { 
@@ -72,6 +111,8 @@ int main(int argc, char **argv)
   //subscribe to wheel drop and bumper messages
   ros::Subscriber my_wheel_drop_subscription= n.subscribe("mobile_base/events/wheel_drop",1,wheelDropCallBack); 
   ros::Subscriber my_bumper_subscription= n.subscribe("mobile_base/events/bumper",1,bumperMessageCallback); 
+  ros::Subscriber colorImageSubscription= n.subscribe("camera/rgb/image_rect_color",1,colorImageCallback); 
+  ros::Subscriber depthSubscription= n.subscribe("camera/depth/image_raw",1,depthImageCallback); 
   
   //publish sound and command vel messages 
   
@@ -106,3 +147,4 @@ int main(int argc, char **argv)
   }
   return 0; // should never get here, unless roscore dies 
 } 
+
