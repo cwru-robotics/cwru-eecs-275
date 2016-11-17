@@ -1,2 +1,0 @@
-cwru_deeplearning_robot/deeplearning_bringup:kobuki_msgs:minimal_turtlebot
--DCATKIN_DEVEL_PREFIX=/home/ubuntu/ros_ws/devel -DCMAKE_INSTALL_PREFIX=/home/ubuntu/ros_ws/install -G Unix Makefiles

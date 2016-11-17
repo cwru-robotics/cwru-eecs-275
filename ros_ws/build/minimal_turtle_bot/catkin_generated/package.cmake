@@ -1,7 +1,0 @@
-set(_CATKIN_CURRENT_PACKAGE "minimal_turtle_bot")
-set(minimal_turtle_bot_MAINTAINER "ubuntu <ubuntu@todo.todo>")
-set(minimal_turtle_bot_DEPRECATED "")
-set(minimal_turtle_bot_VERSION "0.0.0")
-set(minimal_turtle_bot_BUILD_DEPENDS "roscpp" "kobuki_msgs" "std_msgs")
-set(minimal_turtle_bot_RUN_DEPENDS "roscpp" "std_msgs" "kobuki_msgs")
-set(minimal_turtle_bot_BUILDTOOL_DEPENDS "catkin")

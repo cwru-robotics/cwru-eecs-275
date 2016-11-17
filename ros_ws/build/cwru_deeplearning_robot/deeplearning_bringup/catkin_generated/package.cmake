@@ -1,7 +1,0 @@
-set(_CATKIN_CURRENT_PACKAGE "deeplearning_bringup")
-set(deeplearning_bringup_MAINTAINER "Luc Bettaieb <bettaieb@case.edu>")
-set(deeplearning_bringup_DEPRECATED "")
-set(deeplearning_bringup_VERSION "0.0.1")
-set(deeplearning_bringup_BUILD_DEPENDS )
-set(deeplearning_bringup_RUN_DEPENDS "kobuki" "turtlebot_description" "robot_state_publisher" "xacro" "openni2_launch" "pointcloud_to_laserscan")
-set(deeplearning_bringup_BUILDTOOL_DEPENDS "catkin")
