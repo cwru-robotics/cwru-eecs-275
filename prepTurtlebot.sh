@@ -25,7 +25,7 @@ if [ "$1" == "orbbec" ];
 then 
 echo "cloning orbbec astra code"
 git clone https://github.com/orbbec/ros_astra_camera.git
-https://github.com/tfoote/ros_astra_launch.git
+git clone https://github.com/tfoote/ros_astra_launch.git
 # Need Orbbec code if we're not using Asus camera 
 fi
 
