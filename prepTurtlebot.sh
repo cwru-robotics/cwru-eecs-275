@@ -4,7 +4,7 @@
 ##################################################################
 if [ "$1" == "orbbec" ]; 
 then
-ehco "We see we have an orbbec camera"
+echo "We see we have an orbbec camera"
 else 
 echo "We're assuming we have an asus camera"
 fi
@@ -39,8 +39,6 @@ mv $initialDirectory/cwru-turtlebot/turtleStart.sh ~/ros_ws/src/deeplearning_bri
 cd ~/ros_ws
 catkin_make
 
-#~/ros_ws/src/ros_astra_camera/scripts/create_udev_rules
-
 sudo chmod +755 $initialDirectory/cwru-turtlebot/rc.local
 sudo mv $initialDirectory/cwru-turtlebot/rc.local /etc
 sudo chmod +755 ~/ros_ws/src/deeplearning_bringup/launch/turtleStart.sh
@@ -48,6 +46,7 @@ sudo rm -r $initialDirectory/
 if [ "$1" == "orbbec" ]; 
 then
 echo "installing astra launch files"
+~/ros_ws/src/ros_astra_camera/scripts/create_udev_rules
 sudo apt-get install ros-indigo-astra-launch
 # Need Astra code if we're not using Asus camera 
 fi 
