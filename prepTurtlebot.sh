@@ -6,14 +6,9 @@ initialDirectory=$PWD
 
 source /opt/ros/indigo/setup.bash
 
-if [ -d "~/ros_ws/" ] 
-then
-    echo "ros_ws already exists, delete it and start over"
-    sudo rm -r ~/ros_ws/src
-else
-    echo "ros_ws doesn't exist make a new one"
-    mkdir -p ~/ros_ws/src
-fi
+echo "First try to remove ros_ws"
+sudo rm -r ~/ros_ws/
+mkdir -p ~/ros_ws/src
 
 cd ~/ros_ws/src
 catkin_init_workspace
