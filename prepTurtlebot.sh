@@ -25,6 +25,7 @@ if [ "$1" == "orbbec" ];
 then 
 echo "cloning orbbec astra code"
 git clone https://github.com/orbbec/ros_astra_camera.git
+https://github.com/tfoote/ros_astra_launch.git
 # Need Orbbec code if we're not using Asus camera 
 fi
 
@@ -47,6 +48,5 @@ if [ "$1" == "orbbec" ];
 then
 echo "installing astra launch files"
 ~/ros_ws/src/ros_astra_camera/scripts/create_udev_rules
-sudo apt-get install ros-indigo-astra-launch
 # Need Astra code if we're not using Asus camera 
 fi 
