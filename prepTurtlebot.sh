@@ -10,6 +10,7 @@ echo "We're assuming we have an asus camera"
 fi
 
 initialDirectory=$PWD
+echo $initialDirectory
 
 source /opt/ros/indigo/setup.bash
 
@@ -49,5 +50,7 @@ then
 echo "installing astra launch files"
 source ~/ros_ws/devel/setup.bash 
 ~/ros_ws/src/ros_astra_camera/scripts/create_udev_rules
+sudo mv ~/ros_ws/src/deeplearning_bringup/launch/deeplearning_orbbec.launch ~/ros_ws/src/deeplearning_bringup/launch/deeplearning.launch
+
 # Need Astra code if we're not using Asus camera 
 fi 
