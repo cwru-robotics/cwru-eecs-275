@@ -31,8 +31,10 @@ git clone https://github.com/orbbec/ros_astra_camera.git
 git clone https://github.com/orbbec/ros_astra_launch.git
 
 source ~/ros_ws/devel/setup.bash 
+cd ~/ros_ws
 catkin_make --pkg astra_camera -DFILTER=OFF
-# Need Orbbec code if we're not using Asus camera 
+# Let's force the filter to be off, should be by default but let's build here just to be sure
+cd ~/ros_ws/src
 fi
 
 mv $initialDirectory/minimal_turtlebot ~/ros_ws/src
