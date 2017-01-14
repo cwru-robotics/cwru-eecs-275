@@ -1,0 +1,25 @@
+<launch>
+
+  <remap from="camera/depth/points" to="cloud_in" />
+  <remap from="mobile_base/commands/velocity" to="cmd_vel" />
+
+  <!-- Kobuki Base -->
+  <include file="$(find kobuki_node)/launch/minimal.launch" />
+
+  <!-- Odometry (graft) -->
+  <include file="$(find deeplearning_bringup)/launch/include/graft.launch.xml" />
+
+  <!-- Orbbec Astra Camera -->
+  <include file="$(find astra_camera)/launch/astra.launch" />
+
+  <!-- Convert the depth image to a laser scan -->
+  <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan">
+  <param name="scan_height" value="10"/>
+  <remap from="image" to="/camera/depth/image_raw"/>
+  </node>
+
+  <!-- URDF -->
+  <include file="$(find deeplearning_bringup)/launch/include/description.launch.xml" />
+
+
+</launch>
