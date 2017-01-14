@@ -5,6 +5,8 @@
 if [ "$1" == "orbbec" ]; 
 then
 echo "We see we have an orbbec camera"
+sudo apt-get install libudev-dev
+#install udev lib
 else 
 echo "We're assuming we have an asus camera"
 fi
