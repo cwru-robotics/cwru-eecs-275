@@ -29,6 +29,10 @@ then
 echo "cloning orbbec astra code"
 git clone https://github.com/orbbec/ros_astra_camera.git
 git clone https://github.com/orbbec/ros_astra_launch.git
+
+cd ~/ros_ws
+
+catkin_make --pkg astra_camera -DFILTER=OFF
 # Need Orbbec code if we're not using Asus camera 
 fi
 
