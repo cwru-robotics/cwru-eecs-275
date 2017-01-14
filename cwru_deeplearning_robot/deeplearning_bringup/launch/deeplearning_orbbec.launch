@@ -10,7 +10,7 @@
   <include file="$(find deeplearning_bringup)/launch/include/graft.launch.xml" />
 
   <!-- Orbbec Astra Camera -->
-  <include file="$(find astra_camera)/launch/astra.launch" />
+  <include file="$(find astra_launch)/launch/astra.launch" />
 
   <!-- Convert the depth image to a laser scan -->
   <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan">
