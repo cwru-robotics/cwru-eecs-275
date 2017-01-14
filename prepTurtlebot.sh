@@ -30,25 +30,24 @@ git clone https://github.com/tfoote/ros_astra_launch.git
 # Need Orbbec code if we're not using Asus camera 
 fi
 
-cd ~/ros_ws
-catkin_make
-
 mv $initialDirectory/minimal_turtlebot ~/ros_ws/src
 mv $initialDirectory/cwru_deeplearning_robot/deeplearning_bringup ~/ros_ws/src
 
-mv $initialDirectory/cwru-turtlebot/turtleStart.sh ~/ros_ws/src/deeplearning_bringup/launch
+mv "$initialDirectory/cwru-turtlebot/turtleStart.sh" ~/ros_ws/src/deeplearning_bringup/launch
 
+sudo chmod +755 "$initialDirectory/cwru-turtlebot/rc.local"
+sudo mv "$initialDirectory/cwru-turtlebot/rc.local" /etc
+sudo chmod +755 ~/ros_ws/src/deeplearning_bringup/launch/turtleStart.sh
+sudo rm -r $initialDirectory/
+
+source ~/ros_ws/devel/setup.bash 
 cd ~/ros_ws
 catkin_make
 
-sudo chmod +755 $initialDirectory/cwru-turtlebot/rc.local
-sudo mv $initialDirectory/cwru-turtlebot/rc.local /etc
-sudo chmod +755 ~/ros_ws/src/deeplearning_bringup/launch/turtleStart.sh
-sudo rm -r $initialDirectory/
+
 if [ "$1" == "orbbec" ]; 
 then
 echo "installing astra launch files"
-source ~/ros_ws/devel/setup.bash 
 ~/ros_ws/src/ros_astra_camera/scripts/create_udev_rules
 sudo mv ~/ros_ws/src/deeplearning_bringup/launch/deeplearning_orbbec.launch ~/ros_ws/src/deeplearning_bringup/launch/deeplearning.launch
 
