@@ -40,6 +40,8 @@ sudo mv "$initialDirectory/cwru-turtlebot/rc.local" /etc
 sudo chmod +755 ~/ros_ws/src/deeplearning_bringup/launch/turtleStart.sh
 sudo rm -r $initialDirectory/
 
+catkin_make # call this first to complete ws initialization
+
 source ~/ros_ws/devel/setup.bash 
 cd ~/ros_ws
 catkin_make
