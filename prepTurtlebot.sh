@@ -47,6 +47,7 @@ sudo rm -r $initialDirectory/
 if [ "$1" == "orbbec" ]; 
 then
 echo "installing astra launch files"
+source /opt/ros/indigo/setup.bash 
 ~/ros_ws/src/ros_astra_camera/scripts/create_udev_rules
 # Need Astra code if we're not using Asus camera 
 fi 
