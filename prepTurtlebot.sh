@@ -40,6 +40,7 @@ fi
 
 mv $initialDirectory/minimal_turtlebot ~/ros_ws/src
 mv $initialDirectory/cwru_deeplearning_robot/deeplearning_bringup ~/ros_ws/src
+mv $initialDirectory/cwru_deeplearning_robot/deeplearning_bringup/deeplearning_description/ ~/ros_ws/src
 
 mv "$initialDirectory/cwru-turtlebot/turtleStart.sh" ~/ros_ws/src/deeplearning_bringup/launch
 
