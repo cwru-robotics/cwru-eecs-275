@@ -3,14 +3,12 @@
 ##################################################################
 ### Created by Mike Gallagher, Case Western Reserve University ###
 ##################################################################
-if [ "$1" == "orbbec" ]; 
-then
-echo "We see we have an orbbec camera"
-sudo apt-get install libudev-dev
-#install udev lib
-else 
-echo "We're assuming we have an asus camera"
-fi
+echo "We see we have a Kinect camera"
+echo "Make sure usbcore.autosuspend=-1 is in /boot/extlinux/extlinux.conf"
+echo "This shuts off autosuspend and makes Kinect reliable" 
+
+sudo apt-get install ros-indigo-freenect-launch
+sudo apt-get install ros-indigo-libfreenect
 
 initialDirectory=$PWD
 echo $initialDirectory
@@ -25,21 +23,10 @@ cd ~/ros_ws/src
 catkin_init_workspace
 
 git clone https://github.com/yujinrobot/kobuki_msgs
-if [ "$1" == "orbbec" ]; 
-then 
-echo "cloning orbbec astra code"
-git clone https://github.com/orbbec/ros_astra_camera.git
-git clone https://github.com/orbbec/ros_astra_launch.git
-
-source ~/ros_ws/devel/setup.bash 
-cd ~/ros_ws
-catkin_make --pkg astra_camera -DFILTER=OFF
-# Let's force the filter to be off, should be by default but let's build here just to be sure
-cd ~/ros_ws/src
-fi
 
 mv $initialDirectory/minimal_turtlebot ~/ros_ws/src
 mv $initialDirectory/cwru_deeplearning_robot/deeplearning_bringup ~/ros_ws/src
+mv $initialDirectory/51-kinect.rules /etc/udev/rules.d
 
 
 mv "$initialDirectory/cwru-turtlebot/turtleStart.sh" ~/ros_ws/src/deeplearning_bringup/launch
@@ -56,12 +43,3 @@ source ~/ros_ws/devel/setup.bash
 cd ~/ros_ws
 catkin_make
 
-
-if [ "$1" == "orbbec" ]; 
-then
-echo "installing astra launch files"
-~/ros_ws/src/ros_astra_camera/scripts/create_udev_rules
-sudo mv ~/ros_ws/src/deeplearning_bringup/launch/deeplearning_orbbec.launch ~/ros_ws/src/deeplearning_bringup/launch/deeplearning.launch
-
-# Need Astra code if we're not using Asus camera 
-fi 
