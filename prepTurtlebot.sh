@@ -26,6 +26,8 @@ git clone https://github.com/yujinrobot/kobuki_msgs
 
 mv $initialDirectory/minimal_turtlebot ~/ros_ws/src
 mv $initialDirectory/cwru_deeplearning_robot/deeplearning_bringup ~/ros_ws/src
+mv $initialDirectory/cwru_deeplearning_robot/deeplearning_description ~/ros_ws/src
+mv $initialDirectory/cwru_deeplearning_robot/deeplearning_launch ~/ros_ws/src
 mv $initialDirectory/51-kinect.rules /etc/udev/rules.d
 
 
