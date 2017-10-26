@@ -8,6 +8,7 @@
 
   <!-- Microsoft Kinect -->
   <include file="$(find freenect_launch)/launch/freenect.launch" />
+  <param name="/camera/driver/data_skip" value="10" />
 
   <!-- Pointcloud To LaserScan -->
   <!-- <include file="$(find deeplearning_bringup)/launch/include/pointcloud_to_laser.launch.xml" /> -->
