@@ -14,7 +14,7 @@
   <!-- <include file="$(find deeplearning_bringup)/launch/include/pointcloud_to_laser.launch.xml" /> -->
 
   <!-- Load Map Server -->
-  <include file="$(find glennan_2nd_flr)/launchers/load_glennan.launch.xml" /> 
+  <include file="$(find glennan_second_floor)/launchers/load_glennan.launch.xml" /> 
   
   <!-- Run AMCL -->
   <node pkg="amcl" type="amcl" name="amcl" output="screen">
