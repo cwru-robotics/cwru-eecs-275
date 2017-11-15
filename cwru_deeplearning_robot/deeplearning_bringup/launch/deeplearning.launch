@@ -7,7 +7,9 @@
   <include file="$(find deeplearning_bringup)/launch/include/robot_pose_ekf.launch.xml" />
 
   <!-- Microsoft Kinect -->
-  <include file="$(find freenect_launch)/launch/freenect.launch" />
+  <include file="$(find freenect_launch)/launch/freenect.launch" >
+  <arg name="publish_tf" value="false" />
+  </include>
   <param name="/camera/driver/data_skip" value="10" />
 
   <!-- Pointcloud To LaserScan -->
@@ -15,21 +17,7 @@
 
   <!-- Load Map Server -->
   <include file="$(find glennan_second_floor)/launchers/load_glennan.launch.xml" /> 
-  
-  <!-- Run AMCL -->
-  <node pkg="amcl" type="amcl" name="amcl" output="screen">
-    	<param name="odom_model_type" value="diff"/>
-    	<param name="odom_alpha1" value="0.2"/>
-    	<param name="odom_alpha2" value="0.2"/>
-    	<param name="odom_alpha3" value="0.2"/>
-    	<param name="odom_alpha4" value="0.2"/>
-    	<param name="odom_alpha5" value="0.2"/>
-    	<param name="odom_frame_id" value="odom"/>
-    	<param name="base_frame_id" value="base_link"/>
-    	<param name="global_frame_id" value="map"/>
-    	<param name="tf_broadcast" value="true"/>
-</node>
-  
+   
   <!-- Depthimage To LaserScan -->
   <include file="$(find deeplearning_bringup)/launch/include/depthimage_to_laser.launch.xml" /> 
    
